@@ -26,7 +26,7 @@ const Wrapper = styled.section`
     height: 100vh;
     grid-template-columns: 200px 1fr;
     grid-template-rows: 0.1fr 1fr;
-    background-color: #c4dfdf;
+    background-color: #27374d;
   }
   .dashboard-page {
     background-color: #fff;

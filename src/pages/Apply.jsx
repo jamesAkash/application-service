@@ -1,151 +1,213 @@
-import React from "react";
+import React, { useState } from "react";
 import { styled } from "styled-components";
 
 const Apply = () => {
+  const [user, setUser] = useState({
+    fname: "",
+    lname: "",
+    gender: "",
+    a1: "",
+    a2: "",
+    a3: "",
+    a4: "",
+  });
   return (
     <Wrapper>
-      <header>
-        <h1>Application Form</h1>
-      </header>
-      <form>
-        <section>
-          <h1>User Details</h1>
-          <div className="section-form">
-            <div className="form-control">
-              <label htmlFor="firstName">First Name</label>
-              <input type="text" />
-            </div>
-            <div className="form-control">
-              <label htmlFor="lastName">Last Name</label>
-              <input type="text" />
-            </div>
-            <div className="form-control">
-              <label htmlFor="name">Gender</label>
-              <select>
-                <option>Male</option>
-                <option>Female</option>
-              </select>
-            </div>
-          </div>
-          <hr />
-        </section>
-        <section>
-          <h1>Address Details</h1>
-
-          <div className="section-form">
-            <div className="form-control">
-              <label htmlFor="Address1">House No/Street</label>
-              <input type="text" />
-            </div>
-            <div className="form-control">
-              <label htmlFor="Address2">City</label>
-              <input type="text" />
-            </div>
-            <div className="form-control">
-              <label htmlFor="Address3">District</label>
-              <input type="text" />
-            </div>
-
-            <div className="form-control">
-              <label htmlFor="lastName">Additional details</label>
-              <textarea className="area" />
-            </div>
-            <div className="form-control">
-              <label htmlFor="citizen">Citizen</label>
-              <select>
-                <option>Indian</option>
-                <option>Non-Indian</option>
-              </select>
-            </div>
-            <div className="form-control">
-              <label for="img">Select image</label>
-              <input type="file" id="img" name="img" accept="image/*" />
+      <div className="container">
+        <header>Registration</header>
+        {/* form */}
+        <form action="#">
+          <div className="details personal">
+            <span className="title">Personal Details</span>
+            {/* fields */}
+            <div className="fields">
+              <div className="input-field">
+                <label>Full Name</label>
+                <input type="text" placeholder="Enter Your name" required />
+              </div>
+              <div className="input-field">
+                <label>Date of Birth</label>
+                <input type="date" placeholder="Enter birth date" required />
+              </div>
+              <div className="input-field">
+                <label>Email</label>
+                <input type="email" placeholder="Enter your email" />
+              </div>
+              <div className="input-field">
+                <label>Mobile Number</label>
+                <input
+                  type="number"
+                  placeholder="Enter mobile number"
+                  required
+                />
+              </div>
+              <div className="input-field">
+                <label>Gender</label>
+                <select value="Male">
+                  <option>Male</option>
+                  <option>Female</option>
+                  <option>Others</option>
+                </select>
+              </div>
+              <div className="input-field">
+                <label>Occupation</label>
+                <input type="text" placeholder="Enter occupation" />
+              </div>
             </div>
           </div>
-          <hr />
-        </section>
-        <button className="btn">Submit</button>
-      </form>
+
+          <div className="details ID">
+            <span className="title">Identity Details</span>
+            {/* fields */}
+            <div className="fields">
+              <div className="input-field">
+                <label>ID Type</label>
+                <input type="text" placeholder="Enter Identity Type" required />
+              </div>
+              <div className="input-field">
+                <label>Issuance Date</label>
+                <input type="date" required />
+              </div>
+              <div className="input-field">
+                <label>ID Number</label>
+                <input type="text" placeholder="Enter your ID number" />
+              </div>
+              <div className="input-field">
+                <label>Issuance Authority</label>
+                <input type="text" placeholder="Enter authority" required />
+              </div>
+              <div className="input-field">
+                <label>Citizenship</label>
+                <select value="Indian">
+                  <option>Indian</option>
+                  <option>Non-Indian</option>
+                </select>
+              </div>
+              <div className="input-field">
+                <label>Occupation</label>
+                <input type="text" placeholder="Enter occupation" />
+              </div>
+            </div>
+          </div>
+          <button className="btn">Submit</button>
+        </form>
+      </div>
     </Wrapper>
   );
 };
 
 const Wrapper = styled.section`
-  width: 100%;
-  height: calc(100vh - 56.8px);
-  background-color: #fff;
+  min-height: calc(100vh - 58px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  .container {
+    position: relative;
+    max-width: 1100px;
+    width: 100%;
+    border-radius: 6px;
+    padding: 30px;
+    margin: 0 15px;
+    background-color: #fff;
+    box-shadow: 0 5px 10px rgba(0, 0, 0, 0.1);
 
-  header {
-    /* background-color: green; */
-    /* padding: 2rem; */
-    text-align: center;
-    h1 {
-      font-size: clamp(2rem, 3vw, 5rem);
+    header {
+      font-size: 20px;
+      font-weight: 600;
+      color: #333;
+      position: relative;
     }
-  }
 
-  section {
-    padding: 2rem;
-    max-width: 1120px;
-    margin: 0 auto;
-    /* background-color: yellow; */
-    h1 {
-      font-size: clamp(1.2rem, 1.5vw, 1.5rem);
+    header::before {
+      content: "";
+      position: absolute;
+      bottom: -2px;
+      left: 0;
+      width: 37px;
+      height: 3px;
+      border-radius: 8px;
+      background-color: #4070f4;
     }
-  }
-  .section-form {
-    padding: 2rem;
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 12px;
-    height: 100%;
-    border-radius: 8px;
-  }
 
-  .form-control {
-    /* background-color: green; */
-    display: flex;
-    flex-direction: column;
-  }
-  label {
-    font-size: 18px;
-    font-weight: 600;
-  }
-  input {
-    padding: 4px;
-    font-size: 18px;
-    border-radius: 8px;
-    border: 1px solid black;
-  }
-  input[type="file"] {
-    width: 100px;
-    border: 0;
-  }
+    form {
+      position: relative;
+      margin-top: 16px;
+      min-height: 490px;
 
-  select {
-    display: block;
-    font-size: 18px;
-    padding-left: 4px;
-    max-width: 100px;
-  }
+      .details {
+        margin-top: 30px;
+      }
+      .details .ID {
+        margin-top: 10px;
+      }
+      .title {
+        display: block;
+        margin-bottom: 8px;
+        font-size: 16px;
+        font-weight: 500;
+        color: #333;
+        margin: 6px 0;
+      }
 
-  .area {
-    height: 90px;
-    border: 1px solid black;
-    border-radius: 8px;
-  }
-  .btn {
-    display: block;
-    margin: 0 auto;
-    padding: 0.4rem 1rem;
-    font-size: clamp(1rem, 3vw, 2rem);
-    background-color: coral;
-    border: 0;
-    border-radius: 8px;
-    cursor: pointer;
-  }
-  .btn:hover {
-    color: #fff;
+      .fields {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        flex-wrap: wrap;
+      }
+
+      .fields .input-field {
+        display: flex;
+        width: calc(100% / 3 - 15px);
+        flex-direction: column;
+        margin: 4px 0;
+      }
+
+      .input-field label {
+        font-weight: 500;
+        font-size: 12px;
+        color: #2e2e2e;
+      }
+
+      .input-field input {
+        height: 42px;
+        margin: 8px 0;
+        padding: 0 15px;
+        outline: none;
+        border: 1px solid #aaa;
+        font-size: 14px;
+        font-weight: 400;
+        border-radius: 5px;
+        color: #333;
+      }
+
+      .input-field input:is(:focus, :valid) {
+        box-shadow: 0 3px 6px rgba(0, 0, 0, 0.13);
+      }
+      .input-field input[type="date"] {
+        color: #707070;
+      }
+      .input-field input[type="date"]:valid {
+        color: #333;
+      }
+    }
+
+    .btn {
+      display: block;
+      margin: 0 auto;
+      margin-top: 20px;
+      background-color: #27374d;
+      padding: 6px 12px;
+      width: 150px;
+      border: 0;
+      border-radius: 5px;
+      color: white;
+      font-size: 16px;
+      cursor: pointer;
+    }
+    .btn:hover {
+      background-color: #115293;
+    }
   }
 `;
 

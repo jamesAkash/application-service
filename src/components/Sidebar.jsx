@@ -38,7 +38,7 @@ const Wrapper = styled.div`
   }
 
   .link-container > a {
-    color: black;
+    color: #fff;
     /* background-color: #fff; */
     margin-top: 18px;
     padding: 0.4rem;
@@ -47,8 +47,7 @@ const Wrapper = styled.div`
   }
 
   .link-container > a:hover {
-    background-color: #85b1b1;
-    color: wheat;
+    background-color: #051e36;
   }
 `;
 
