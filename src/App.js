@@ -3,7 +3,6 @@ import Dashboard from "./pages/Dashboard";
 import SharedLayout from "./pages/SharedLayout";
 import Apply from "./pages/Apply";
 import MaterialComponent from "./pages/MaterialComponent";
-
 function App() {
   return (
     <div className="app">
