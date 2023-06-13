@@ -13,8 +13,9 @@ const AppContext = ({ children }) => {
     applied: 40,
     completed: "9",
   });
+  console.log(applications);
   return (
-    <GlobalContext.Provider value={{ applications, status }}>
+    <GlobalContext.Provider value={{ applications, status, setApplications }}>
       {children}
     </GlobalContext.Provider>
   );

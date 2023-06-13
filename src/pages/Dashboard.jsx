@@ -1,64 +1,143 @@
 import React from "react";
 import { styled } from "styled-components";
 import { useGlobalContext } from "../context/application_context";
-import { Paper } from "@mui/material";
+import {
+  Box,
+  Card,
+  CardContent,
+  Paper,
+  Table,
+  TableBody,
+  TableCell,
+  TableContainer,
+  TableHead,
+  TableRow,
+  Typography,
+} from "@mui/material";
 
 const Dashboard = () => {
   const { status } = useGlobalContext();
   return (
     <Wrapper>
-      <h1>Dashboard</h1>
-      <div className="status-container">
-        <Paper elevation={3} className="status pending">
-          <h3>Pending</h3>
-          <p>{status.pending}</p>
-        </Paper>
-        <div className="status applied">
-          <h3>Applied</h3>
-          <p>{status.applied}</p>
-        </div>
-        <div className="status completed">
-          <h3>Completed</h3>
-          <p>{status.completed}</p>
-        </div>
-      </div>
+      <Typography variant="h6" fontWeight="700">
+        Dashboard
+      </Typography>
+      <Box className="grid-it">
+        <Card elevation={4}>
+          <CardContent>
+            <Typography variant="h4">Pending</Typography>
+            <Typography
+              mt={2}
+              fontSize={28}
+              fontWeight={600}
+              variant="h6"
+              letterSpacing="-1px"
+              style={{ fontSize: "clamp(26px, 5vw,48px)" }}
+            >
+              {status.pending}
+            </Typography>
+          </CardContent>
+        </Card>
+        <Card elevation={4}>
+          <CardContent>
+            <Typography variant="h4">Completed</Typography>
+            <Typography
+              mt={2}
+              fontWeight={600}
+              variant="h6"
+              letterSpacing="-1px"
+              style={{ fontSize: "clamp(26px, 5vw,48px)" }}
+            >
+              {status.completed}
+            </Typography>
+          </CardContent>
+        </Card>
+        <Card elevation={4}>
+          <CardContent>
+            <Typography variant="h4">Applied</Typography>
+            <Typography
+              mt={2}
+              fontSize={28}
+              fontWeight={600}
+              variant="h6"
+              letterSpacing="-1px"
+              style={{ fontSize: "clamp(26px, 5vw,48px)" }}
+            >
+              {status.applied}
+            </Typography>
+          </CardContent>
+        </Card>
+      </Box>
+      <TableDisplay />
     </Wrapper>
   );
 };
 
+const TableDisplay = () => {
+  const { applications } = useGlobalContext();
+  return (
+    <TableContainer
+      sx={{
+        marginInline: "auto",
+        maxWidth: "95%",
+        padding: 2,
+        overflowX: "auto",
+      }}
+      component={Paper}
+      elevation={3}
+    >
+      <Typography variant="h5" textAlign="center" mb="20px">
+        COMPLETED APPLICANTS
+      </Typography>
+      <Table sx={{ width: "100%" }}>
+        <TableHead>
+          <TableRow>
+            <TableCell>Name</TableCell>
+            <TableCell>D.O.B</TableCell>
+            <TableCell>Contact</TableCell>
+            <TableCell>Email</TableCell>
+            <TableCell>Gender</TableCell>
+          </TableRow>
+        </TableHead>
+        <TableBody>
+          {applications.map((applicant) => {
+            const { fname, dob, number, mail, gender } = applicant;
+            return (
+              <TableRow key={fname}>
+                <TableCell>{fname}</TableCell>
+                <TableCell>{dob}</TableCell>
+                <TableCell>{number}</TableCell>
+                <TableCell>{mail}</TableCell>
+                <TableCell>{gender}</TableCell>
+              </TableRow>
+            );
+          })}
+        </TableBody>
+      </Table>
+    </TableContainer>
+  );
+};
+
 const Wrapper = styled.section`
-  background-color: #ececec;
+  /* background-color: #ececec; */
   max-width: 1200px;
   margin: 0 auto;
   height: calc(100vh - 56.8px);
 
-  .status-container {
-    padding: 32px 0;
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: space-evenly;
-    align-items: flex-start;
-    max-width: 700px;
-    margin: 0 auto;
-    /* background-color: green; */
+  .grid-it {
+    padding: 20px;
     margin-top: 80px;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    justify-content: center;
+    text-align: center;
+    gap: 20px;
   }
 
-  .status {
-    padding: 2rem 4rem;
-    border-radius: 8px;
-    box-shadow: -2px 5px 12px -5px #151515;
-  }
-
-  .pending {
-    background-color: #f5f0bb;
-  }
-
-  .applied {
-    background-color: #b3c890;
-  }
-  .completed {
-    background-color: #73a9ad;
+  @media (max-width: 840px) {
+    .grid-it {
+      grid-template-columns: 1fr;
+    }
   }
 `;
 

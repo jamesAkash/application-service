@@ -1,7 +1,9 @@
 import React, { useState } from "react";
 import { styled } from "styled-components";
+import { useGlobalContext } from "../context/application_context";
 
 const Apply = () => {
+  const { setApplications, applications } = useGlobalContext();
   const [user, setUser] = useState({
     // Taking only fname,dob,gender,mail,number,citizen
     fname: "",
@@ -23,7 +25,7 @@ const Apply = () => {
   };
   const handleSubmit = (e) => {
     e.preventDefault();
-    console.log(user);
+    setApplications([...applications, user]);
   };
   return (
     <Wrapper>
