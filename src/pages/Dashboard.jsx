@@ -1,22 +1,25 @@
 import React from "react";
 import { styled } from "styled-components";
+import { useGlobalContext } from "../context/application_context";
+import { Paper } from "@mui/material";
 
 const Dashboard = () => {
+  const { status } = useGlobalContext();
   return (
     <Wrapper>
       <h1>Dashboard</h1>
       <div className="status-container">
-        <div className="status pending">
+        <Paper elevation={3} className="status pending">
           <h3>Pending</h3>
-          <p>12</p>
-        </div>
+          <p>{status.pending}</p>
+        </Paper>
         <div className="status applied">
           <h3>Applied</h3>
-          <p>12</p>
+          <p>{status.applied}</p>
         </div>
         <div className="status completed">
           <h3>Completed</h3>
-          <p>12</p>
+          <p>{status.completed}</p>
         </div>
       </div>
     </Wrapper>

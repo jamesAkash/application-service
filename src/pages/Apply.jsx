@@ -3,47 +3,87 @@ import { styled } from "styled-components";
 
 const Apply = () => {
   const [user, setUser] = useState({
+    // Taking only fname,dob,gender,mail,number,citizen
     fname: "",
-    lname: "",
-    gender: "",
+    dob: "",
+    gender: "Male",
+    mail: "",
+    number: "",
+    citizen: "Indian",
     a1: "",
     a2: "",
     a3: "",
     a4: "",
   });
+  // console.log(user);
+  const handleChange = (e) => {
+    const name = e.target.name;
+    const value = e.target.value;
+    setUser({ ...user, [name]: value });
+  };
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    console.log(user);
+  };
   return (
     <Wrapper>
       <div className="container">
         <header>Registration</header>
         {/* form */}
-        <form action="#">
+        <form onSubmit={handleSubmit}>
           <div className="details personal">
             <span className="title">Personal Details</span>
             {/* fields */}
             <div className="fields">
               <div className="input-field">
                 <label>Full Name</label>
-                <input type="text" placeholder="Enter Your name" required />
+                <input
+                  type="text"
+                  value={user.fname}
+                  name="fname"
+                  onChange={(e) => handleChange(e)}
+                  placeholder="Enter Your name"
+                  required
+                />
               </div>
               <div className="input-field">
                 <label>Date of Birth</label>
-                <input type="date" placeholder="Enter birth date" required />
+                <input
+                  type="date"
+                  value={user.dob}
+                  name="dob"
+                  onChange={(e) => handleChange(e)}
+                  required
+                />
               </div>
               <div className="input-field">
                 <label>Email</label>
-                <input type="email" placeholder="Enter your email" />
+                <input
+                  value={user.mail}
+                  name="mail"
+                  onChange={(e) => handleChange(e)}
+                  type="email"
+                  placeholder="Enter your email"
+                />
               </div>
               <div className="input-field">
                 <label>Mobile Number</label>
                 <input
                   type="number"
+                  value={user.number}
+                  name="number"
+                  onChange={(e) => handleChange(e)}
                   placeholder="Enter mobile number"
                   required
                 />
               </div>
               <div className="input-field">
                 <label>Gender</label>
-                <select value="Male">
+                <select
+                  value={user.gender}
+                  name="gender"
+                  onChange={(e) => handleChange(e)}
+                >
                   <option>Male</option>
                   <option>Female</option>
                   <option>Others</option>
@@ -62,11 +102,11 @@ const Apply = () => {
             <div className="fields">
               <div className="input-field">
                 <label>ID Type</label>
-                <input type="text" placeholder="Enter Identity Type" required />
+                <input type="text" placeholder="Enter Identity Type" />
               </div>
               <div className="input-field">
                 <label>Issuance Date</label>
-                <input type="date" required />
+                <input type="date" />
               </div>
               <div className="input-field">
                 <label>ID Number</label>
@@ -74,11 +114,15 @@ const Apply = () => {
               </div>
               <div className="input-field">
                 <label>Issuance Authority</label>
-                <input type="text" placeholder="Enter authority" required />
+                <input type="text" placeholder="Enter authority" />
               </div>
               <div className="input-field">
                 <label>Citizenship</label>
-                <select value="Indian">
+                <select
+                  value={user.citizen}
+                  name="citizen"
+                  onChange={(e) => handleChange(e)}
+                >
                   <option>Indian</option>
                   <option>Non-Indian</option>
                 </select>
@@ -89,7 +133,9 @@ const Apply = () => {
               </div>
             </div>
           </div>
-          <button className="btn">Submit</button>
+          <button type="submit" className="btn">
+            Submit
+          </button>
         </form>
       </div>
     </Wrapper>
